@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <SDL2/SDL.h>
 
 const unsigned BLACK = 0x00000000;
