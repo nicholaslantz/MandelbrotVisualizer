@@ -33,5 +33,5 @@ program will probably crash. I should fix that.
 * e to zoom in
 * q to zoom out
 * r to reset viewing frame
-  * This is useful for when you get lost or whenyou bork your viewing frame
+  * This is useful for when you get lost or when you bork your viewing frame
     because doubles don't have infinite precision.
