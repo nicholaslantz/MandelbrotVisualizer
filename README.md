@@ -32,3 +32,6 @@ program will probably crash. I should fix that.
 * wasd, hjkl, or arrow keys to move in the appropriate direction
 * e to zoom in
 * q to zoom out
+* r to reset viewing frame
+  * This is useful for when you get lost or you bork your viewing frame because
+    doubles don't have infinite precision.
