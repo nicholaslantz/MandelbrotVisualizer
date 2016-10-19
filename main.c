@@ -21,6 +21,14 @@ unsigned int get_color( double y, double x )
 {
     double iter_x = 0.0, iter_y = 0.0;
 
+    // Determine whether point lies in main cardiod or
+    // second bulb
+    double p = sqrt( (x-.25) * (x-.25) + (y*y) );
+    if (    x < (p - 2 * (p*p) + .25 )
+         || (x+1) * (x+1) + (y*y) < (1.0/16.0) ) {
+        return cool_palette[ 0 ];
+    }
+
     // Black magic algorithm from wikipedia
     int i;
     for ( i = 0; (iter_x * iter_x + iter_y * iter_y < 4 ) && i < 256; i++ ) {
@@ -49,7 +57,7 @@ int main( int argc, char **argv )
     SDL_Init( SDL_INIT_VIDEO );
 
     SDL_Window *mainwin = SDL_CreateWindow(
-            "Mandelbrot Visualiztion",
+            "Mandelbrot Visualization",
             SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED,
             640,
@@ -171,8 +179,8 @@ int main( int argc, char **argv )
             double dy = ( top - bottom ) / ( double ) curr_winheight; 
 
             SDL_LockSurface( mainsurf );
-            for ( unsigned y = 0; y < curr_winheight; y += 2 ) {
-                for ( unsigned x = 0; x < curr_winwidth; x += 2) {
+            for ( unsigned y = 0; y < curr_winheight; y += 1 ) {
+                for ( unsigned x = 0; x < curr_winwidth; x += 1) {
                     unsigned color = get_color(
                             top - ( ( double ) y * dy ),
                             left + ( ( double ) x * dx )
