@@ -32,5 +32,3 @@ program will probably crash. I should fix that.
 * wasd, hjkl, or arrow keys to move in the appropriate direction
 * e to zoom in
 * q to zoom out
-
-
