@@ -21,6 +21,12 @@ This should build the program and output a binary that you can run with
 ./mandelbrot
 ```
 
+This program has not been tested on OS X or Windows machines. SDL2 is a
+multi-platform library, so it should work. But, I do not know how it would be
+built on other platforms.
+
+Also, if for some reason unsigned integers are not 32 bits on your machine, the
+program will probably crash. I should fix that.
 ## Controls
 
 * wasd, hjkl, or arrow keys to move in the appropriate direction
