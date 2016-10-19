@@ -2,9 +2,17 @@
 
 const unsigned BLACK = 0x00000000;
 const unsigned WHITE = 0xFFFFFF00;
-const unsigned RED = 0xFF000000;
-const unsigned GREEN = 0x00FF0000;
-const unsigned BLUE = 0x0000FF00;
+
+const unsigned COLORS[] = {
+    0x00000000, 0x08080800, 0x11111100, 0x19191900,
+    0x22222200, 0x2A2A2A00, 0x33333300, 0x3B3B3B00,
+    0x44444400, 0x4C4C4C00, 0x55555500, 0x5D5D5D00,
+    0x66666600, 0x6e6e6e00, 0x77777700, 0x7F7F7F00,
+    0x88888800, 0x90909000, 0x99999900, 0xA1A1A100,
+    0xAAAAAA00, 0xb2B2B200, 0xBBBBBB00, 0xC3C3C300,
+    0xCCCCCC00, 0xD4D4D400, 0xDDDDDD00, 0xE5E5E500,
+    0xEEEEEE00, 0xF6F6F600, 0xFFFFFF00
+};
 
 unsigned int get_color( double y, double x )
 {
@@ -18,8 +26,7 @@ unsigned int get_color( double y, double x )
         iter_x = xtemp;
     }
 
-    if ( i == 64 ) return BLACK;
-    else return WHITE;
+    return COLORS[ i % ( sizeof( COLORS ) / sizeof( unsigned ) ) ];
 }
 
 int main( int argc, char **argv )
@@ -125,10 +132,6 @@ int main( int argc, char **argv )
 
         if (    new_winwidth  != curr_winwidth
              || new_winheight != curr_winheight ) {
-            should_render = 1;
-        }
-
-        if ( should_render ) {
             curr_winwidth =  new_winwidth;
             curr_winheight = new_winheight;
 
@@ -143,6 +146,12 @@ int main( int argc, char **argv )
                     0x0000FF00,
                     0
                     );
+
+            should_render = 1;
+        }
+
+        if ( should_render ) {
+
             double dx = ( right - left ) / ( double ) curr_winwidth;
             double dy = ( top - bottom ) / ( double ) curr_winheight; 
 
