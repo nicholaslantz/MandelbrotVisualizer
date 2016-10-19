@@ -171,8 +171,8 @@ int main( int argc, char **argv )
             double dy = ( top - bottom ) / ( double ) curr_winheight; 
 
             SDL_LockSurface( mainsurf );
-            for ( unsigned y = 0; y < curr_winheight; y += 1 ) {
-                for ( unsigned x = 0; x < curr_winwidth; x += 1) {
+            for ( unsigned y = 0; y < curr_winheight; y += 2 ) {
+                for ( unsigned x = 0; x < curr_winwidth; x += 2) {
                     unsigned color = get_color(
                             top - ( ( double ) y * dy ),
                             left + ( ( double ) x * dx )
@@ -183,6 +183,9 @@ int main( int argc, char **argv )
                         + ( ( y * mainsurf->pitch ) / 4 )
                         + ( ( x * sizeof( unsigned ) ) / 4 ) ;
                     *pixel = color;
+                    *(pixel + 1) = color;
+                    *(pixel + mainsurf->pitch/4) = color;
+                    *(pixel + (mainsurf->pitch/4 + 1)) = color;
                 }
             }
 
