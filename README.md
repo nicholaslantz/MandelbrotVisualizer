@@ -4,7 +4,7 @@
 A basic visualization of the Mandelbrot set written in C with the SDL2
 framework. It uses doubles for calculations, so it does not have infinite
 detail like the actual fractal does, but it does a decent job at giving a
-high level overview
+high level overview.
 
 ## Compilation
 
@@ -27,7 +27,7 @@ built on other platforms.
 
 Also, if for some reason unsigned integers are not 32 bits on your machine, the
 program will probably crash. I should fix that.
-## Controls
+## Controls / Usage
 
 * wasd, hjkl, or arrow keys to move in the appropriate direction
 * e to zoom in
@@ -35,3 +35,8 @@ program will probably crash. I should fix that.
 * r to reset viewing frame
   * This is useful for when you get lost or when you bork your viewing frame
     because doubles don't have infinite precision.
+
+This program calculates each pixel individually. If you find that it is running
+too slow on your machine, decrease the window size and it will run faster. Of
+course, you will get less detail, but you'll be able to peruse the Mandelbrot
+set at a more comfortable pace.
