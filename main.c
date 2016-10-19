@@ -42,16 +42,16 @@ unsigned int get_color( double y, double x )
 
 int main( int argc, char **argv )
 {
-    // Set up cool palette, Taken from
+    // Set up cool palette, taken from
     // http://bisqwit.iki.fi/jutut/kuvat/programming_examples/mandelbrotbtrace.pdf
     for ( unsigned i = 0; i < 256; i++ ) {
-        int r = ( int )( 32 - 31*cos( i * .01227*1 ) );
-        int g = ( int )( 32 - 31*cos( i * .01227*3 ) );
-        int b = ( int )( 32 - 31*cos( i * .01227*5 ) );
+        int r = ( int )( 96 - 95*cos( i * .01227*1 ) );
+        int g = ( int )( 96 - 95*cos( i * .01227*3 ) );
+        int b = ( int )( 96 - 95*cos( i * .01227*5 ) );
         cool_palette[ i ] &= 0xFFFFFF00;
-        cool_palette[ i ] |= ( 3*( r << 24 ) );
-        cool_palette[ i ] |= ( 3*( g << 16 ) );
-        cool_palette[ i ] |= ( 3*( b << 8  ) );
+        cool_palette[ i ] |= ( r << 24 );
+        cool_palette[ i ] |= ( g << 16 );
+        cool_palette[ i ] |= ( b << 8  );
     }
 
     SDL_Init( SDL_INIT_VIDEO );
@@ -109,6 +109,12 @@ int main( int argc, char **argv )
             case SDL_KEYDOWN:
                 should_render = 1;
                 switch ( mainevent.key.keysym.sym ) {
+                case SDLK_r:
+                    left = -2.0;
+                    right = 1.0;
+                    top = 1.0;
+                    bottom = -1.0;
+                    break;
                 case SDLK_e:
                     left += fabs( left - x_center ) / 2;
                     right -= fabs( right - x_center ) / 2;
@@ -191,9 +197,9 @@ int main( int argc, char **argv )
                         + ( ( y * mainsurf->pitch ) / 4 )
                         + ( ( x * sizeof( unsigned ) ) / 4 ) ;
                     *pixel = color;
-                    *(pixel + 1) = color;
-                    *(pixel + mainsurf->pitch/4) = color;
-                    *(pixel + (mainsurf->pitch/4 + 1)) = color;
+                    //*(pixel + 1) = color;
+                    //*(pixel + mainsurf->pitch/4) = color;
+                    //*(pixel + (mainsurf->pitch/4 + 1)) = color;
                 }
             }
 
