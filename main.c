@@ -1,9 +1,6 @@
 #include <math.h>
 #include <SDL2/SDL.h>
 
-const unsigned BLACK = 0x00000000;
-const unsigned WHITE = 0xFFFFFF00;
-
 const unsigned COLORS[] = {
     0x00000000, 0x08080800, 0x11111100, 0x19191900,
     0x22222200, 0x2A2A2A00, 0x33333300, 0x3B3B3B00,
@@ -17,7 +14,7 @@ const unsigned COLORS[] = {
 
 unsigned cool_palette[ 256 ];
 
-unsigned int get_color( double y, double x )
+static unsigned int get_color( const double y, const double x )
 {
     double iter_x = 0.0, iter_y = 0.0;
 
@@ -152,6 +149,12 @@ int main( int argc, char **argv )
                     bottom += y_shiftwidth;
                     break;
                 }
+                break;
+            case SDL_WINDOWEVENT:
+                should_render = 1;
+                break;
+            default:
+                // take no action
                 break;
             }
         }
