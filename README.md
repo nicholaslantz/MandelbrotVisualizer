@@ -12,7 +12,7 @@ Make sure you have SDL2 development libraries installed on your machine, then
 type the following in the directory where you downloaded it:
 
 ```
-gcc main.c -o mandelbrot -lSDL2
+gcc main.c -o mandelbrot -lSDL2 -lm
 ```
 
 This should build the program and output a binary that you can run with

@@ -1,3 +1,4 @@
+#include <math.h>
 #include <SDL2/SDL.h>
 
 const unsigned BLACK = 0x00000000;
@@ -14,23 +15,37 @@ const unsigned COLORS[] = {
     0xEEEEEE00, 0xF6F6F600, 0xFFFFFF00
 };
 
+unsigned cool_palette[ 256 ];
+
 unsigned int get_color( double y, double x )
 {
     double iter_x = 0.0, iter_y = 0.0;
 
     // Black magic algorithm from wikipedia
     int i;
-    for ( i = 0; (iter_x * iter_x + iter_y * iter_y < 4 ) && i < 64; i++ ) {
+    for ( i = 0; (iter_x * iter_x + iter_y * iter_y < 4 ) && i < 256; i++ ) {
         double xtemp = iter_x*iter_x - iter_y*iter_y + x;
         iter_y = 2 * iter_x * iter_y + y;
         iter_x = xtemp;
     }
 
-    return COLORS[ i % ( sizeof( COLORS ) / sizeof( unsigned ) ) ];
+    return cool_palette[ i % ( sizeof( cool_palette ) / sizeof( unsigned ) ) ];
 }
 
 int main( int argc, char **argv )
 {
+    // Set up cool palette, Taken from
+    // http://bisqwit.iki.fi/jutut/kuvat/programming_examples/mandelbrotbtrace.pdf
+    for ( unsigned i = 0; i < 256; i++ ) {
+        int r = ( int )( 32 - 31*cos( i * .01227*1 ) );
+        int g = ( int )( 32 - 31*cos( i * .01227*3 ) );
+        int b = ( int )( 32 - 31*cos( i * .01227*5 ) );
+        cool_palette[ i ] &= 0xFFFFFF00;
+        cool_palette[ i ] |= ( 3*( r << 24 ) );
+        cool_palette[ i ] |= ( 3*( g << 16 ) );
+        cool_palette[ i ] |= ( 3*( b << 8  ) );
+    }
+
     SDL_Init( SDL_INIT_VIDEO );
 
     SDL_Window *mainwin = SDL_CreateWindow(
