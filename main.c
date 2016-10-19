@@ -93,18 +93,26 @@ int main( int argc, char **argv )
                     bottom -= fabs( bottom - y_center ) * 2;
                     break;
                 case SDLK_d:
+                case SDLK_l:
+                case SDLK_RIGHT:
                     right -= x_shiftwidth;
                     left -= x_shiftwidth;
                     break;
                 case SDLK_a:
+                case SDLK_h:
+                case SDLK_LEFT:
                     right += x_shiftwidth;
                     left += x_shiftwidth;
                     break;
                 case SDLK_s:
+                case SDLK_j:
+                case SDLK_DOWN:
                     top -= y_shiftwidth;
                     bottom -= y_shiftwidth;
                     break;
                 case SDLK_w:
+                case SDLK_k:
+                case SDLK_UP:
                     top += y_shiftwidth;
                     bottom += y_shiftwidth;
                     break;
